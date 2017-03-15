@@ -89,6 +89,7 @@
   svnr = svn rebase
   svnd = svn dcommit
   svnl = svn log --oneline --show-commit
+	wtf = !git commit -m \"$(curl -s whatthecommit.com/index.txt)\"
 [format]
   pretty = format:%C(blue)%ad%Creset %C(yellow)%h%C(green)%d%Creset %C(blue)%s %C(magenta) [%an]%Creset
 [mergetool]
@@ -111,7 +112,7 @@
 [core]
   autocrlf = false
   editor = vim
-  excludesfile = ~/.yadr/git/gitignore
+	excludesfile = ~/.yadr/git/gitignore
 [advice]
   statusHints = false
 [diff]
@@ -125,3 +126,16 @@
   enabled = true
 [include]
   path = .gitconfig.user
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/SourceTree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[url "https://"]
+	insteadOf = git://
+[user]
+	name = 
+	email = 
+[commit]
+	template = ~/.stCommitMsg
